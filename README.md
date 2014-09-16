@@ -79,3 +79,12 @@ Useful for perform basic data-level parallelization (e.g., when mapping reads)
 ```bash
 awk 'NR%4==1{ f=(FILENAME)"."(++i%5); }{ print >> f }' foo.fq
 ```
+
+
+#### Split FASTA file into 5 files
+Useful for perform basic data-level parallelization (e.g., when mapping reads);
+a bit easier than FASTQ since we know for sure '>' at the beginning of the line
+marks a new record.
+```bash
+awk 'substr($0,1,1)==">"{ f=(FILENAME)"."(++i%5); }{ print >> f }' foo.fa
+```
