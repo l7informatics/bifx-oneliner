@@ -75,7 +75,9 @@ paste - - < foo
 
 
 #### Split FASTQ file into 5 files
-Useful for perform basic data-level parallelization (e.g., when mapping reads)
+Useful for perform basic data-level parallelization (e.g., when mapping reads).
+*WARNING*: this assumes that every sequence record is a single line, which is
+usually the case but is not strictly required by the file format specification.
 ```bash
 awk 'NR%4==1{ f=(FILENAME)"."(++i%5); }{ print >> f }' foo.fq
 ```
