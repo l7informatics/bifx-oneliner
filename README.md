@@ -88,3 +88,10 @@ marks a new record.
 ```bash
 awk 'substr($0,1,1)==">"{ f=(FILENAME)"."(++i%5); }{ print >> f }' foo.fa
 ```
+
+
+#### Sort a file ignoring its header
+Makes use of awk's internal pipe feature:
+```bash
+awk 'NR<2 { print $0; next; }{ print $0 | "sort <sort options>" }' foo.txt
+```
